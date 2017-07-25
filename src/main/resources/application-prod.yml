@@ -1,0 +1,6 @@
+school:
+  name: beida
+  location:
+    country: China
+    city: beijing
+  age: 101

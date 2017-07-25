@@ -1,0 +1,7 @@
+school:
+  name: qinghua
+  location:
+    country: China
+    city: beijing
+  age: 100
+
