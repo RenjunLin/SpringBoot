@@ -2,7 +2,6 @@ package com.jerry.springboot.controller;
 
 import com.jerry.springboot.bean.input.StudentInput;
 import com.jerry.springboot.domain.Student;
-import com.jerry.springboot.properties.SchoolProperties;
 import com.jerry.springboot.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +25,17 @@ public class StudentController {
     }
 
     @PostMapping(value = "add")
-    public Student addStudent(@RequestBody StudentInput studentInput){
+    public Student addStudent(@RequestBody StudentInput studentInput){   //获取json body
         return studentService.addStudent(studentInput.getName(), studentInput.getAge());
     }
 
     @GetMapping(value = "{id}")
-    public Student getStudent(@PathVariable Integer id){
+    public Student getStudent(@PathVariable("id") Integer id){   //获取路径参数
         return studentService.getStudentById(id);
+    }
+
+    @GetMapping(value = "")
+    public List<Student> getStudentByAge(@RequestParam("age") Integer age){   //获取query param或者表单参数
+        return studentService.getStudentByAge(age);
     }
 }

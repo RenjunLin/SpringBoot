@@ -27,4 +27,8 @@ public class StudentService {
     public Student getStudentById(Integer id){
         return studentRepository.findOne(id);
     }
+
+    public List<Student> getStudentByAge(Integer age){
+        return studentRepository.findByAge(age);
+    }
 }
