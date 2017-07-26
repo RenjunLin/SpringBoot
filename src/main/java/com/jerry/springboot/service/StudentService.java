@@ -1,6 +1,8 @@
 package com.jerry.springboot.service;
 
 import com.jerry.springboot.domain.Student;
+import com.jerry.springboot.lib.enums.ResultEnum;
+import com.jerry.springboot.lib.exception.ServerInternalException;
 import com.jerry.springboot.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +26,12 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Student getStudentById(Integer id){
-        return studentRepository.findOne(id);
+    public Student getStudentById(Integer id) throws ServerInternalException{
+        Student student = studentRepository.findOne(id);
+        if (student == null){
+            throw new ServerInternalException(ResultEnum.RESOURCE_NOT_FOUND);
+        }
+        return student;
     }
 
     public List<Student> getStudentByAge(Integer age){

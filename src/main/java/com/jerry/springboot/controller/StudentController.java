@@ -2,6 +2,7 @@ package com.jerry.springboot.controller;
 
 import com.jerry.springboot.bean.input.StudentInput;
 import com.jerry.springboot.domain.Student;
+import com.jerry.springboot.lib.exception.ServerInternalException;
 import com.jerry.springboot.service.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "{id}")
-    public Student getStudent(@PathVariable("id") Integer id){   //获取路径参数
+    public Student getStudent(@PathVariable("id") Integer id) throws ServerInternalException{   //获取路径参数
         return studentService.getStudentById(id);
     }
 
